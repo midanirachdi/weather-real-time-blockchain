@@ -122,7 +122,7 @@
 
         this.plans_eth[2].value = (1/this.eth_price) * this.plans[2].value  ;
         const contract = web3.eth.contract(abi).at(address);
-        contract.changeWeeKprice(web3.toWei(this.plans_eth[2].value),(err, res)=>{
+        contract.changeMonthprice(web3.toWei(this.plans_eth[2].value),(err, res)=>{
           if(err){
             console.log(err);
           }

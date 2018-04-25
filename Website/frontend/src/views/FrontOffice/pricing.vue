@@ -30,7 +30,7 @@
                   <!--<p class="mb-0">For most of the users</p>-->
                 </div>
                 <div class="app-card-content">
-                  <h2 class="mb-4 font-3x"><span class="font-xl">$10</span><sub>/10 Tickets</sub></h2>
+                  <h2 class="mb-4 font-3x"><span class="font-xl">${{ plans_usd[0].value }}</span><sub>/10 Tickets</sub></h2>
                   <ul class="list-unstyled list-group-flush">
                     <li class="list-group-item">Personal use</li>
                     <li class="list-group-item">Full access</li>
@@ -51,7 +51,7 @@
                   <!--<p class="mb-0">For most of the users</p>-->
                 </div>
                 <div class="app-card-content">
-                  <h2 class="mb-4 font-3x"><span class="font-xl">$20</span><sub>/Week</sub></h2>
+                  <h2 class="mb-4 font-3x"><span class="font-xl">${{ plans_usd[1].value }}</span><sub>/Week</sub></h2>
                   <ul class="list-unstyled list-group-flush">
                     <li class="list-group-item">Personal use</li>
                     <li class="list-group-item">Full access</li>
@@ -71,7 +71,7 @@
                   <!--<p class="mb-0">For developer</p>-->
                 </div>
                 <div class="app-card-content">
-                  <h2 class="mb-4 font-3x"><span class="font-xl">$50</span><sub>/Month</sub></h2>
+                  <h2 class="mb-4 font-3x"><span class="font-xl">${{ plans_usd[2].value }}</span><sub>/Month</sub></h2>
                   <ul class="list-unstyled list-group-flush">
                     <li class="list-group-item">Personal use</li>
                     <li class="list-group-item">Full access</li>
@@ -119,7 +119,9 @@
         to: '',
         transactionHash: '',
         plans_eth : [{value:0},{value:0},{value:0}],
-        current_prices_api :'/api/price/eth'
+        plans_usd : [{value:0},{value:0},{value:0}],
+        current_prices_api :'/api/price/eth',
+        current_prices_api_usd :'/api/price/usd'
       }
     },
     methods: {
@@ -217,6 +219,12 @@
       axios.get(self.current_prices_api)
         .then(function (response) {
           self.plans_eth = response.data;
+        })
+        .catch((error) => {
+        });
+      axios.get(self.current_prices_api_usd)
+        .then(function (response) {
+          self.plans_usd = response.data;
         })
         .catch((error) => {
         });
