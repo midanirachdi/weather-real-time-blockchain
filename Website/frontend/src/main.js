@@ -62,7 +62,7 @@ Vue.use(VueBreadcrumbs)
 Vue.use(VueNotifications, options)
 Vue.use(moment);
 Vue.use(VueAxios,axios);
-axios.defaults.baseURL = 'http://localhost:3030';
+axios.defaults.baseURL = 'http://backend.270bytes.com/';
 
 Vue.component(VmBackTop.name, VmBackTop)
 

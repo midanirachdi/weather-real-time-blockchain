@@ -4,14 +4,14 @@
 		<app-header></app-header>
  <v-content>
       <section>
-        <v-parallax src="../../../src/assets/hero.jpeg" height="600">
+        <v-parallax :src="require('@/assets/hero.jpeg')" height="600">
           <v-layout
             column
             align-center
             justify-center
             class="white--text"
           >
-            <img src="../../assets/vuetify.png" alt="Vuetify.js" style="transform:rotate(180deg);" height="200">
+            <img :src="require('@/assets/vuetify.png')" alt="Vuetify.js" style="transform:rotate(180deg);" height="200">
             <h1 class="white--text mb-2 display-1 text-xs-center">Nammumu</h1>
             <div class="subheading mb-3 text-xs-center">Realtime weather data for analytics</div>
             <v-btn
@@ -94,7 +94,7 @@
       </section>
 
       <section>
-        <v-parallax src="../../../src/assets/section.jpg" height="380">
+        <v-parallax :src="require('@/assets/section.jpg')" height="380">
           <v-layout column align-center justify-center>
             <div class="headline white--text mb-3 text-xs-center">Have a good day we hope you're fine !</div>
           </v-layout>
@@ -182,6 +182,7 @@
 
 import Card from './card';
 import Header from './header';
+
 
 	export default{
 		components:{

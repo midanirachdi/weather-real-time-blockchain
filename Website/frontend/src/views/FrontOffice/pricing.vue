@@ -39,7 +39,7 @@
                 </div>
                 <div class="app-footer">
                   <a href="javascript:;" class="btn btn-block btn-gradient-primary white--text"
-                     @click="topup(plans_eth[0].value, 10)">Buy now
+                     @click="topup(plans_eth[0].value, 1)">Buy now
                     ! </a>
                 </div>
               </div>
@@ -133,12 +133,13 @@
         ticket_price = web3.toWei(ticket_price);
         var miniToken = this.initContract();
         //const address = '0x48a9ca6e6cc7e5664ccc746213b3e3e6bf88e23d';
-        let price = 0;
+        var price = 0;
         if (typeof nb_Ticket_Or_Type_Of_Offer !== "string") {
           price = ticket_price * nb_Ticket_Or_Type_Of_Offer;
         }
         else {
           price = ticket_price;
+          console.log(price)
         }
 
 
@@ -179,18 +180,18 @@
                     //todo : change token balance here
 
                     if (typeof nb_Ticket_Or_Type_Of_Offer !== "string") {
-                      EventBus.$emit('addBalanceTicket', 10);
+                      //EventBus.$emit('addBalanceTicket', 10);
                       this.$router.go('/map');
 
                     }
                     else if (nb_Ticket_Or_Type_Of_Offer === "week") {
                       console.log('week')
-                      EventBus.$emit('addWeekToExpiration', 7);
+                      //EventBus.$emit('addWeekToExpiration', 7);
                       this.$router.go('/map');
                     }
-                    else {
+                    else if (nb_Ticket_Or_Type_Of_Offer === "month"){
                       console.log('month');
-                      EventBus.$emit('addMonthToExpiration', 30);
+                      //EventBus.$emit('addMonthToExpiration', 30);
                       this.$router.go('/map');
                     }
 

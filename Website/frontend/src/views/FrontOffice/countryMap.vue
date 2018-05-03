@@ -3,8 +3,32 @@
 	<div>
 		 <v-app id="inspire">
        <app-header></app-header>
-		<highmaps class="mr" ref="cmap" :options="options"></highmaps>
+
+
+
+         <v-layout row wrap>
+
+       <v-flex xs6>
+         <highmaps class="mr" ref="cmap" :options="options"></highmaps>
+       </v-flex>
+
+
+
+
+       <v-flex xs6>
+         <highcharts class="mr" ref="lchart" :options="stateOptions"></highcharts>
+       </v-flex>
+         </v-layout>
+
+
+
+
 		<div class="mr controle">
+
+
+
+
+
 
       <v-radio-group v-model="radioGroup" row>
         <v-radio
@@ -17,7 +41,7 @@
 
 
 		</div>
-		<highcharts class="mr" ref="lchart" :options="stateOptions"></highcharts>
+
 		<app-paginator v-bind:country="fullNameCountry"></app-paginator>
        <app-footer></app-footer>
 		</v-app>
@@ -58,7 +82,7 @@ import Footer from './footer';
 				            axios.get(url)
 				          .then(rep=>{
 				          			this.fullNameCountry=rep.data.title;
-				                   	axios.get('http://localhost:3030/weatherdata/fullmap/'+country).then(repw=>{
+				                   	axios.get('weatherdata/fullmap/'+country).then(repw=>{
 				          			let data=repw.data.hmap.temp;
 				     		 this.options=coutryHelper(rep.data,data,this.$refs,this.addSelect,this.removeSelect);
 				          	})
@@ -86,7 +110,7 @@ import Footer from './footer';
     watch:{
     	selectedStates:{
     		handler:function(newVal,oldVal){
-    			let baseUrl='http://localhost:3030/weatherdata/fullmap/'+this.country+'/';
+    			let baseUrl='/weatherdata/fullmap/'+this.country+'/';
 
     			let reqs=[]
     			let promises=[];

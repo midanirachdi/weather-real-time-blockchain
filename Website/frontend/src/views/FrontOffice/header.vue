@@ -32,7 +32,7 @@
         title: '',
         apiExpirationDate: new Date(),
         token_balance: 0,
-        USER_URL: 'http://localhost:3030/users',
+        USER_URL: '/users',
         loggedUser: null
       }
     },

@@ -23,6 +23,7 @@
     "jvectormap": "^2.0.4",
     "leaflet": "^1.2.0",
     "mini-toastr": "^0.7.2",
+    "path": "^0.12.7",
     "qs": "^6.5.1",
     "screenfull": "^3.3.2",
     "vue": "^2.5.2",

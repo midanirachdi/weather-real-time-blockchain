@@ -44,7 +44,7 @@ myEvent.watch((error, result) => {
 function SaveTransaction(alldata) {
 
     var options = {
-        uri: 'http://localhost:3030/transaction',
+        uri: 'http://backend.270bytes.com/api/transaction',
         method: 'POST',
         json: alldata
     };

@@ -4,9 +4,8 @@ let wordHelper=function(data,map,callback){
 
 
     chart: {
-      borderWidth:1,
       map:map,
-      height:'50%'
+      height:'48%'
     },
 
 
@@ -15,7 +14,7 @@ let wordHelper=function(data,map,callback){
     },
 
     subtitle: {
-      text: 'Test'
+      text: 'Average temperature worldwide'
     },
 
     colorAxis: {
@@ -62,7 +61,7 @@ let coutryHelper=function(cityPayload,data,mychart,add,remove){
   return{
     chart: {
       map:cityPayload,
-      height:'30%'
+      height:'60%'
     },
     title: {
       text: 'states'

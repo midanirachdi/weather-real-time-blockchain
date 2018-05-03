@@ -33,7 +33,7 @@
     props: {},
     data() {
       return {
-        TRANSACTION_URL: 'http://localhost:3030/transaction',
+        TRANSACTION_URL: '/transaction',
         transactions: [],
         headers: [
           {

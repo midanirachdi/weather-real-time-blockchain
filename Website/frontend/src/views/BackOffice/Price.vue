@@ -87,7 +87,7 @@
         .catch((error) => {
         });
 
-      axios.get("https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=ETH,USD,EUR")
+      axios.get("https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=ETH,USD,EUR&extraParams=270bytes.com")
         .then(function (response) {
           self.eth_price = response.data.USD;
           initialize();

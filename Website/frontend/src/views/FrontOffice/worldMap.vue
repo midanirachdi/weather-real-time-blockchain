@@ -1,8 +1,7 @@
 <template>
   <div>
     <app-header></app-header>
-      <highmaps :options="options"></highmaps>
-    <app-footer></app-footer>
+      <highmaps :options="options" id="fullmap"></highmaps>
   </div>
 </template>
 
@@ -32,7 +31,7 @@ import Footer from './footer';
 
             axios.get(`https://code.highcharts.com/mapdata/custom/world-palestine-highres.geo.json`)
             .then(rep=>{
-          			axios.get('http://localhost:3030/weatherdata/fullmap').then(repw=>{
+          			axios.get('/weatherdata/fullmap').then(repw=>{
           		  			  this.options=wordHelper(getWordDataFromJson(repw.data),rep.data,this.changeToCountry);
           					})
           })
@@ -68,3 +67,12 @@ import Footer from './footer';
 
 	}
 </script>
+
+
+
+<style scoped>
+  #fullmap {
+    margin-top: 60px;
+  }
+
+</style>

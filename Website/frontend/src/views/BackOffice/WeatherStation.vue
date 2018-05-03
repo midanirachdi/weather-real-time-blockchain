@@ -90,7 +90,6 @@
           >
             <template slot="items" slot-scope="props">
               <td class="text-xs-left">{{ props.item.ip_adr }}</td>
-              <td class="text-xs-left">{{ props.item.status }}</td>
               <td class="text-xs-left">{{ props.item.state[0].name}}</td>
               <td class="text-xs-left">{{ props.item.coord[0].lng}}</td>
               <td class="text-xs-left">{{props.item.coord[0].lat}}</td>
@@ -137,7 +136,6 @@
             sortable: false,
             value: 'ip_adr'
           },
-          {text: 'Status', value: 'status'},
           {text: 'State', value: 'state[0].name'},
           {text: 'Longitude', value: 'coord[0].lng'},
           {text: 'Latitude', value: 'coord[0].lat'},
