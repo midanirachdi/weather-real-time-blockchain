@@ -83,7 +83,7 @@ router.get('/fullMap/:country', function(req, res, next) {
     let country= req.params.country;
     let query= weatherData;
     query.aggregate([
-        {$match: {'timestamp':{ $gt: new Date(Date.now() - (  60 * 60 * 24)) },'coord.country_code':country}},
+        {$match: {'timestamp':{ $gt: new Date(Date.now() - ( 1000 * 60 * 60 * 24 )) },'coord.country_code':country}},
         {$group: {"_id":{ state:'$state'},latestDate: { $last: "$timestamp" },
                 avgTemp: { $avg: "$main.temp" },maxTemp: { $max: "$main.temp" },minTemp: { $min: "$main.temp" },
                 avgHumidity: { $avg: "$main.humidity" },maxHumidity: { $max: "$main.humidity" },minHumidity: { $min: "$main.humidity" },
@@ -140,7 +140,7 @@ router.get('/fullMap/:country/:state', function(req, res, next) {
     console.log(state);
     let query= weatherData;
     query.aggregate([
-        {$match: {'timestamp':{ $gt: new Date(Date.now() - (60 * 60 * 24)) },'coord.country_code':country,'coord.state_code':state}},
+        {$match: {'timestamp':{ $gt: new Date(Date.now() - (1000 * 60 * 60 * 24)) },'coord.country_code':country,'coord.state_code':state}},
         { $limit : 10 },
     ])
         .exec((err,weatherstation) => {

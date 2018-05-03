@@ -1,21 +1,25 @@
 <template>
 
   <v-toolbar fixed class="white" id="">
-    <v-toolbar-title v-text="title"></v-toolbar-title>
+
+      <v-chip label outline color="blue " v-if="$auth.check()" style="padding: 5px">API expiration date : {{apiExpirationDate| formatDate}} <br> Token balance : {{token_balance}}</v-chip>
+
     <v-spacer></v-spacer>
     <v-toolbar-items>
       <v-btn flat large color="primary" v-if="!$auth.check()" to="/" active-class> Home</v-btn>
       <v-btn flat large color="primary" v-if="!$auth.check()" to="/session/login">Login</v-btn>
       <v-btn flat large color="primary" v-if="!$auth.check()" to="/session/sign-up">Register</v-btn>
-      <div class="text-xs-center" style="margin-top: 20px" v-if="$auth.check()">
-        <v-btn outline color="blue" dark @click.prevent="addToExpirationDate" :disabled="token_balance==0">Spend token balance</v-btn>
-      </div>
-      <v-chip label outline color="blue" v-if="$auth.check()">API expiration date : {{apiExpirationDate| formatDate}}</v-chip>
-      <v-chip label outline color="blue" v-if="$auth.check()">Token balance : {{token_balance}} </v-chip>
-          <router-link to="/map" v-if="$auth.check()" tag="v-chip" class="chip chip--label chip--outline blue blue--text">World Map</router-link>
 
-      <v-btn flat large color="primary" v-if="$auth.check()" class="pull-right" @click.prevent="goToPricing">Pricing</v-btn>
-      <v-btn flat large color="primary" v-if="$auth.check()" class="pull-right" @click.prevent="logout">Logout</v-btn>
+
+
+
+      <v-btn flat  color="primary" @click.prevent="addToExpirationDate" v-if="$auth.check()" class="pull-right nopad" :disabled="token_balance==0">Spend token balance</v-btn>
+
+      <!--   <router-link to="/map" v-if="$auth.check()" tag="v-chip" class="chip chip--label chip--outline blue blue--text">World Map</router-link>
+   -->
+      <v-btn flat  color="primary"  v-if="$auth.check()" class="pull-right nopad" @click.prevent="goToMap">World Map</v-btn>
+      <v-btn flat color="primary" v-if="$auth.check()" class="pull-right nopad" @click.prevent="goToPricing">Pricing</v-btn>
+      <v-btn flat color="primary" v-if="$auth.check()" class="pull-right nopad" @click.prevent="logout">Logout</v-btn>
     </v-toolbar-items>
   </v-toolbar>
 
@@ -123,6 +127,9 @@
       },
       goToPricing(){
         this.$router.push('/pricing');
+      },
+      goToMap(){
+        this.$router.push('/map');
       }
     }
   }
@@ -137,6 +144,9 @@
 
   #cardbox {
     display: inline;
+  }
+  .nopad{
+    padding: 0px;
   }
 
 
