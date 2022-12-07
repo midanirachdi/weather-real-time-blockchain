@@ -14,7 +14,7 @@
     "ethereumjs-util": "^5.1.5",
     "ethjs": "^0.3.3",
     "ethjs-query": "^0.3.3",
-    "express": "~4.15.5",
+    "express": "~4.17.3",
     "jsonwebtoken": "^8.2.0",
     "lodash": "^4.17.13",
     "mongoose": "^5.7.5",
