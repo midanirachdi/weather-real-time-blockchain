@@ -1,36 +1,68 @@
-# WebSite
+# Website
 
-This folder contains this two projects :
+The Nammumu web stack: an **Express** REST API backed by MongoDB and a **Vue.js** dashboard for public weather maps, admin tools, and Ethereum subscription management.
 
-## BackEnd
+## 🗂️ Structure
 
-This is a **ExpressJS** project that manage our  restful api and our business layer,
-from managing real weather data  instences from our databases .
+| Folder | Stack | Port | Role |
+| --- | --- | --- | --- |
+| `BackEnd/` | Express, Mongoose, Passport/JWT | **3030** | REST API, auth, weather & transaction data |
+| `frontend/` | Vue 2, Vuetify, Web3 | **8080** | Public site and back-office UI |
 
-To run this project flow those steps :
+## 🖥️ BackEnd
 
-1. Enter the directory :
+The backend manages weather readings, stations, countries/states, users, and blockchain transactions.
 
->  cd BackEnd/
-2.   Install the dependencies :
-> npm install
-3. run the project
-> npm start
+```bash
+cd Website/BackEnd
+npm install
+npm start
+```
 
-The used port is  [3030](http://localhost:3030/)
+The server binds to `0.0.0.0:3030` (override with the `PORT` environment variable).
 
-## FrontEnd
+### 🗄️ Database
 
-This is a **Vue JS** project which is an open-source progressive JavaScript framework for building user interfaces.
+MongoDB is configured in `BackEnd/database_connector/connector.js`. A bundled Atlas URI is included for reference — replace it with your own cluster before starting the API.
 
-To run this project flow those steps :
+### 🛣️ Main routes
 
-1. Enter the directory :
+| Prefix | Purpose |
+| --- | --- |
+| `/api/weatherData` | Ingest and query weather readings (used by IoT collector) |
+| `/api/transaction` | Record subscription payments (used by blockchain Watcher) |
+| `/api/price` | Subscription pricing |
+| `/auth` | Login, register, MetaMask sign-in |
+| `/weatherData` | Front-office weather map endpoints; `POST /` is IP-checked (station must be registered) |
+| `/weatherStation`, `/country`, `/state`, `/transaction`, `/users` | Back-office CRUD |
 
->  cd frontend/
-2.   Install the dependencies :
-> npm install
-3. run the project
-> npm run dev
+The IoT collector uses `/api/weatherData` in production, which accepts POSTs without an IP check. CORS is enabled globally; JWT protects admin-only routes such as `/test`.
 
-The used port is  [8080](http://localhost:8080/)
+## 🎨 FrontEnd
+
+Vue dashboard built on the Vuely admin template. Talks to the API at `http://localhost:3030/` (see `frontend/src/main.js`).
+
+```bash
+cd Website/frontend
+npm install
+npm run dev
+```
+
+Open [http://localhost:8080](http://localhost:8080). For production builds, run `npm run build` and serve the `dist/` output.
+
+See [frontend/README.md](./frontend/README.md) for frontend-specific scripts and structure.
+
+## 🔄 End-to-end flow
+
+```
+IoT collector ──POST──► /api/weatherData ──► MongoDB ──GET──► Vue maps
+Blockchain Watcher ──POST──► /api/transaction ──► MongoDB ──GET──► Admin UI
+User wallet ──pay──► Smart contract ──event──► Watcher
+```
+
+## 📚 Related docs
+
+- [Architecture overview](../docs/overview.md)
+- [Getting started](../README.md#getting-started)
+- [Frontend README](./frontend/README.md)
+- [BlockChain](../BlockChain/README.md) · [IoT](../IOT/README.md)
